@@ -1,0 +1,7 @@
+pandas
+gspread
+selenium
+webdriver-manager
+oauth2client
+lxml
+html5lib
