@@ -1,0 +1,38 @@
+name: Daily Data Scrape
+
+on:
+  schedule:
+    - cron: '30 4 * * *'  # India Time roughly 10:00 AM (UTC time 4:30 AM)
+  workflow_dispatch:      # Manual ga run cheyyadaniki button
+
+jobs:
+  scrape_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Code techuko
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Python Install cheyyi
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # Step 3: Libraries Install cheyyi
+      - name: Install Libraries
+        run: |
+          pip install -r requirements.txt
+
+      # Step 4: Secret nunchi credentials file create cheyyi
+      # Idi chala important step. Secret lo unna data ni file laaga marustundi.
+      - name: Create JSON Key File
+        run: echo '${{ secrets.GCP_JSON_CONTENT }}' > credentials.json
+
+      # Step 5: Script Run cheyyi (Secrets ni pass chesthu)
+      - name: Run Automation Script
+        env:
+          LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+        run: python main.py
