@@ -35,4 +35,4 @@ jobs:
         env:
           LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
           LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
-        run: python main.py
+        run: python main1.py
