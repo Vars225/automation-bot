@@ -1,13 +1,15 @@
-name: Daily Data Scrape
-
+name: Run My Bot
 on:
   schedule:
-    - cron: '30 4 * * *'  # India Time roughly 10:00 AM (UTC time 4:30 AM)
-  workflow_dispatch:      # Manual ga run cheyyadaniki button
+    - cron: '0 0 */5 * *'  # <-- Change idhe!
+  workflow_dispatch:       # Manam manual ga run cheyadaniki button
 
 jobs:
-  scrape_and_upload:
+  build:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # ... nee migatha steps ikkada untayi ...
 
     steps:
       # Step 1: Code techuko
