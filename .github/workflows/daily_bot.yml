@@ -9,9 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # ... nee migatha steps ikkada untayi ...
-
-    steps:
       # Step 1: Code techuko
       - name: Checkout Code
         uses: actions/checkout@v3
