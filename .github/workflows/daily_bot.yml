@@ -1,35 +1,36 @@
 name: Run My Bot
+
 on:
   schedule:
-    - cron: '0 0 */5 * *'  # <-- Change idhe!
-  workflow_dispatch:       # Manam manual ga run cheyadaniki button
+    - cron: '0 0 */5 * *'  # Every 5 days midnight ki run avthundi
+  workflow_dispatch:      # Manual ga run cheyadaniki button logic
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
-      # Step 1: Code techuko
+      # Step 1: Code techuko (Latest version v4 use cheyadam better)
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2: Python Install cheyyi
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       # Step 3: Libraries Install cheyyi
       - name: Install Libraries
         run: |
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       # Step 4: Secret nunchi credentials file create cheyyi
-      # Idi chala important step. Secret lo unna data ni file laaga marustundi.
       - name: Create JSON Key File
         run: echo '${{ secrets.GCP_JSON_CONTENT }}' > credentials.json
 
-      # Step 5: Script Run cheyyi (Secrets ni pass chesthu)
+      # Step 5: Script Run cheyyi
       - name: Run Automation Script
         env:
           LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
